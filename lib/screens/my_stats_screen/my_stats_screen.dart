@@ -31,6 +31,17 @@ class _MyStatsScreenState extends State<MyStatsScreen> {
     ChartSampleData('S', 50, AppColors.chartColor),
     ChartSampleData('S', 50, AppColors.chartColor),
   ];
+
+  List<ChartTestData> chartTestDt = <ChartTestData>[
+    ChartTestData(1, 50, AppColors.chartColor),
+    ChartTestData(2, 80, AppColors.splashgrad2Color),
+    ChartTestData(3, 35, AppColors.chartColor),
+    ChartTestData(4, 100, AppColors.splashgrad2Color),
+    ChartTestData(5, 50, AppColors.chartColor),
+    ChartTestData(6, 50, AppColors.chartColor),
+    ChartTestData(7, 50, AppColors.chartColor),
+  ];
+
   List<String> types = <String>["Weekly", "Monthly", "All Time"];
   int selectedIndex = 1;
   @override
@@ -375,18 +386,29 @@ class _MyStatsScreenState extends State<MyStatsScreen> {
             verticalSpace(10),
             categoryList(),
             verticalSpace(24),
-            /*SfCartesianChart(
-              series: <ColumnSeries<ChartSampleData, String>>[
-                ColumnSeries<ChartSampleData, String>(
-                  // Binding the chartData to the dataSource of the column series.
-                  dataSource: chartDatabar,
-                  pointColorMapper: (ChartSampleData data, _) => data.color,
-                  xValueMapper: (ChartSampleData sales, _) => sales.x,
-                  yValueMapper: (ChartSampleData sales, _) => sales.y,
-                  borderRadius: BorderRadius.circular(SizeUtils.getRadius(15)),
-                ),
-              ],
-            ),*/
+            Container(
+              height: SizeUtils.getHeight(150),
+              child: SfCartesianChart(
+                /*series: <ChartSeries>[
+                  // Renders bar chart
+                  BarSeries<ChartTestData, double>(
+                      dataSource: chartTestDt,
+                      xValueMapper: (ChartTestData data, _) => data.x,
+                      yValueMapper: (ChartTestData data, _) => data.y)
+                ],*/
+                series: <ColumnSeries<ChartTestData, double>>[
+                  ColumnSeries<ChartTestData, double>(
+                    // Binding the chartData to the dataSource of the column series.
+                    dataSource: chartTestDt,
+                    pointColorMapper: (ChartTestData data, _) => data.color,
+                    xValueMapper: (ChartTestData sales, _) => sales.x,
+                    yValueMapper: (ChartTestData sales, _) => sales.y,
+                    borderRadius:
+                        BorderRadius.circular(SizeUtils.getRadius(15)),
+                  ),
+                ],
+              ),
+            ),
             verticalSpace(2),
             Divider(),
             verticalSpace(10),
@@ -501,6 +523,13 @@ class ChartData {
 class ChartSampleData {
   ChartSampleData(this.x, this.y, this.color);
   final String x;
+  final double y;
+  final Color color;
+}
+
+class ChartTestData {
+  ChartTestData(this.x, this.y, this.color);
+  final double x;
   final double y;
   final Color color;
 }

@@ -29,30 +29,75 @@ class _HomeScreenState extends State<HomeScreen> {
           height: SizeUtils.getScreenHeight(),
           width: SizeUtils.getScreenWidth(),
           decoration: BoxDecoration(
-              /* gradient: const LinearGradient(
+              gradient: const LinearGradient(
                 colors: [
                   AppColors.splashgrad1Color,
                   AppColors.splashgrad2Color,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-              ),*/
+              ),
               image: DecorationImage(
                   image: AssetImage(Utils.getAssetPng("bg_all")),
                   fit: BoxFit.cover)),
           child: ScrollConfiguration(
             behavior: NoGlowScrollBehaviour(),
-            child: CustomScrollView(
+            child: NestedScrollView(
+                headerSliverBuilder: (context, innerBoxIsScrolled) {
+                  return [
+                    SliverOverlapAbsorber(
+                      handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                          context),
+                      sliver: SliverSafeArea(
+                        top: false,
+                        bottom: false,
+                        sliver: SliverPersistentHeader(
+                          delegate: SliverAppBarDelegate(
+                              maxHeight: SizeUtils.getHeight(80),
+                              minHeight: SizeUtils.getHeight(80),
+                              child: appBar()),
+                          pinned: true,
+                        ),
+                      ),
+                    ),
+                  ];
+                },
+                body: CustomScrollView(
+                  slivers: [
+                    SliverPersistentHeader(
+                      pinned: false,
+                      delegate: SliverAppBarDelegate(
+                        minHeight: SizeUtils.getHeight(0),
+                        maxHeight: SizeUtils.getHeight(150),
+                        child: title(),
+                      ),
+                    ),
+                    SliverPersistentHeader(
+                      pinned: true,
+                      delegate: SliverAppBarDelegate(
+                        minHeight: SizeUtils.getHeight(25),
+                        maxHeight: SizeUtils.getHeight(25),
+                        child: containerTop(),
+                      ),
+                    ),
+                    SliverList(
+                      delegate: SliverChildListDelegate([
+                        leaveCard(),
+                      ]),
+                    ),
+                  ],
+                )),
+            /*CustomScrollView(
               physics: ClampingScrollPhysics(),
               slivers: [
-                SliverPersistentHeader(
+              /*  SliverPersistentHeader(
                   pinned: true,
                   delegate: SliverAppBarDelegate(
                     minHeight: SizeUtils.getHeight(80),
                     maxHeight: SizeUtils.getHeight(80),
                     child: appBar(),
                   ),
-                ),
+                ),*/
                 SliverPersistentHeader(
                   pinned: false,
                   delegate: SliverAppBarDelegate(
@@ -75,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
                 ),
               ],
-            ),
+            ),*/
           ),
         ),
       ),
@@ -109,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
       return Container(
         height: SizeUtils.getHeight(62),
         width: SizeUtils.getScreenWidth(),
-        color: AppColors.homeGradcolor,
+        //color: AppColors.homeGradcolor,
         padding: EdgeInsets.only(
             left: SizeUtils.getWidth(20),
             right: SizeUtils.getWidth(20),
@@ -153,15 +198,15 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Container(
         height: SizeUtils.getHeight(150),
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
+            /*gradient: LinearGradient(
             colors: [
               AppColors.homeGradcolor,
               AppColors.splashgrad2Color,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomLeft,
-          ),
-        ),
+          ),*/
+            ),
         padding: EdgeInsets.symmetric(horizontal: SizeUtils.getWidth(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -231,9 +276,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget containerTop() {
     return Stack(children: [
-      Container(
+      /*Container(
         color: AppColors.splashgrad2Color,
-      ),
+      ),*/
       Container(
         height: SizeUtils.getHeight(25),
         width: SizeUtils.getScreenWidth(),
