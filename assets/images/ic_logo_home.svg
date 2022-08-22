@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="87.168" height="87.168" viewBox="0 0 87.168 87.168">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3318" data-name="Rectangle 3318" width="87.168" height="87.168" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="ic_logo_home" clip-path="url(#clip-path)">
+    <path id="Path_686" data-name="Path 686" d="M44.843,88.608h0A28.172,28.172,0,0,1,16.671,60.436V33.667A28.172,28.172,0,0,1,44.843,61.839Z" transform="translate(-8.692 -17.554)" fill="#4971d1"/>
+    <path id="Path_687" data-name="Path 687" d="M80.69,65.831h0V51.614A17.947,17.947,0,0,1,98.637,33.667V47.884A17.947,17.947,0,0,1,80.69,65.831" transform="translate(-42.071 -17.554)" fill="#0cbdec"/>
+    <path id="Path_688" data-name="Path 688" d="M121.26,126.685H100.679A19.988,19.988,0,0,1,80.691,106.7h20.581A19.988,19.988,0,0,1,121.26,126.685Z" transform="translate(-42.072 -55.631)" fill="#0cbdec"/>
+  </g>
+</svg>
